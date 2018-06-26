@@ -1,19 +1,17 @@
-const button = document.querySelector('button')
+const form = document.querySelector('form#flickForm')
 
-const updateText = function() {
-    const pillow = document.querySelector('#breakfast')
-    pillow.textContent = 'Waffles'
+const updateHeading = function(ev) {
+  ev.preventDefault()
+  const f = ev.target
+
+  const flickName = f.flickName.value
+  const item = document.createElement('li')
+  item.textContent = flickName
+
+  const list = document.querySelector('#flicks')
+  list.appendChild(item)
+
+  f.reset()
 }
 
-button.onclick = updateText
-
-
-const form = document.querySelector('#ageForm')
-
-const changeHeader = function(event) {
-    event.preventDefault()
-    const blanket = document.querySelector('#ageHeading')
-    blanket.textContent = document.querySelector('#userInput').value
-}
-
-form.addEventListener('submit', changeHeader)
+form.addEventListener('submit', updateHeading)
