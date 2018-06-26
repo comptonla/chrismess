@@ -10,10 +10,10 @@ button.onclick = updateText
 
 const form = document.querySelector('#ageForm')
 
-const changeHeader = function submitButton() {
+const changeHeader = function(event) {
+    event.preventDefault()
     const blanket = document.querySelector('#ageHeading')
     blanket.textContent = document.querySelector('#userInput').value
-    event.preventDefault()
 }
 
 form.addEventListener('submit', changeHeader)
