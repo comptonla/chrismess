@@ -3,3 +3,11 @@
 body {
   font-family: 'Lato', Helvetica, Arial, sans-serif;
 }
+
+input[type="text"].whichChris {
+  color: limegreen;
+}
+
+input[type="text"].flickName {
+  color: blue;
+}
