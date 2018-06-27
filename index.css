@@ -4,6 +4,14 @@ body {
   font-family: 'Lato', Helvetica, Arial, sans-serif;
 }
 
+header {
+  background-image: url();
+}
+
+.chris {
+  display: block;
+}
+
 input[type="text"].whichChris {
   color: limegreen;
 }
