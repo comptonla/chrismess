@@ -12,15 +12,8 @@ const submitHandler = function(ev) {
   ev.preventDefault()
   const f = ev.target
 
-  const flickName = f.flickName.value
-  const flickSpan  = document.createElement('span')
-  flickSpan.classList.add('movieName')
-  flickSpan.textContent = flickName
-
-  const whichChris = f.whichChris.value
-  const chrisSpan = document.createElement('span')
-  chrisSpan.classList.add('chris')
-  chrisSpan.textContent = whichChris
+  const flickSpan = renderProperty('name', f.flickName.value)
+  const chrisSpan = renderProperty('chris', f.whichChris.value)
 
   const item = document.createElement('li')
   item.classList.add('flick')
