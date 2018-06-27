@@ -1,5 +1,13 @@
 const form = document.querySelector('form#flickForm')
 
+const renderProperty = function(name, value) {
+  const span = document.createElement('span')
+  span.classList.add(name)
+  span.textContent = value
+  return span
+}
+
+
 const submitHandler = function(ev) {
   ev.preventDefault()
   const f = ev.target
@@ -26,17 +34,5 @@ const submitHandler = function(ev) {
 }
 
 
-const chrisForm = function(event) {
-  event.preventDefault()
-
-  const whichChris = tar.whichChris.value
-  const chris = document.createElement('li')
-  chris.textContent = whichChris
-
-  const list = document.querySelector('#flicks')
-  list.appendChild(chris)
-
-  tar.reset()
-}
 
 form.addEventListener('submit', submitHandler)
