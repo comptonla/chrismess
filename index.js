@@ -1,6 +1,7 @@
 class App {
   constructor() {
     this.flicks = []
+    this.load()
     this.list = document.querySelector('#flicks')
 
     const form = document.querySelector('form#flickForm')
@@ -8,6 +9,15 @@ class App {
       ev.preventDefault()
       this.handleSubmit(ev)
     })
+  }
+
+  save() {
+    localStorage.setItem('flicks', JSON.stringify(this.flicks))
+  }
+
+  load() {
+    const flicks = JSON.parse(localStorage.getItem('flicks'))
+    flicks.forEach(flick => this.addFlick(flick))
   }
 
   renderProperty(name, value) {
@@ -23,13 +33,13 @@ class App {
 
     const delButton = document.createElement('button')
     delButton.classList.add('remove')
-    delButton.textContent = 'delete'
+    delButton.innerHTML = '<i class="far fa-trash-alt" title="Remove Flick"></i>'
     delButton.addEventListener('click', () => this.removeMovie(flick, item))
     actions.appendChild(delButton)
 
     const favButton = document.createElement('button')
     favButton.classList.add('fav')
-    favButton.textContent = 'favorite'
+    favButton.innerHTML = `<i class="fas fa-star"></i>`
     favButton.addEventListener('click',() => this.toggleFavorite(flick, item))
     actions.appendChild(favButton)
 
@@ -64,6 +74,7 @@ class App {
 
   toggleFavorite(flick, item) {
     flick.favorite = item.classList.toggle('fav')
+    this.save()
   }
 
   removeMovie(flick, item) {
@@ -71,6 +82,19 @@ class App {
 
     const i = this.flicks.indexOf(flick)
     this.flicks.splice(i, 1)
+
+    this.save()
+  }
+
+  addFlick(flick) {
+    this.flicks.push(flick)
+    this.save()
+
+    const item = this.renderItem(flick)
+    if (flick.favorite) {
+      item.classList.add('fav')
+    }
+    this.list.appendChild(item)
   }
 
   handleSubmit(ev) {
@@ -81,11 +105,8 @@ class App {
       year: f.flickYear.value,
       favorite: false,
     }
-
-    this.flicks.push(flick)
-
-    const item = this.renderItem(flick)
-    this.list.appendChild(item)
+    
+    
 
     f.reset()
     f.flickName.focus()
