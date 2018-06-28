@@ -8,10 +8,6 @@ header {
   background-image: url();
 }
 
-.chris {
-  display: block;
-}
-
 input[type="text"].whichChris {
   color: limegreen;
 }
